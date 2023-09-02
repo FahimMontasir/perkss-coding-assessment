@@ -19,46 +19,48 @@ yarn dev
 2. yarn build
 3. vercel
 
-4. create a workflow
+### api endpoints:
+
+1. create a workflow
    <br/>
    post: https://perkss-assessment.vercel.app/api/v1/workflow
    <br/>
    body:
 
-```json {
-    "name": "Management Campaign Approval",
-    "initBox": "Start Marketing Campaign",
-    "endBox": "Campaign Published",
-    "conditionalBoxes": [
+```json
+{
+  "name": "Management Campaign Approval",
+  "initBox": "Start Marketing Campaign",
+  "endBox": "Campaign Published",
+  "conditionalBoxes": [
+    {
+      "condition": "Content Review",
+      "actions": [
         {
-            "condition": "Content Review",
-            "actions": [
-                {
-                    "actionName": "Content Creation",
-                    "conditionApplicable": true
-                },
-                {
-                    "actionName": "Content Editing",
-                    "conditionApplicable": true
-                },
-                {
-                    "actionName": "Content Approval",
-                    "conditionApplicable": true
-                }
-            ]
+          "actionName": "Content Creation",
+          "conditionApplicable": true
         },
         {
-            "condition": "Design Review",
-            "actions": [
-                {
-                    "actionName": "Design Creation",
-                    "conditionApplicable": true
-                }
-            ]
+          "actionName": "Content Editing",
+          "conditionApplicable": true
+        },
+        {
+          "actionName": "Content Approval",
+          "conditionApplicable": true
         }
-    ]
+      ]
+    },
+    {
+      "condition": "Design Review",
+      "actions": [
+        {
+          "actionName": "Design Creation",
+          "conditionApplicable": true
+        }
+      ]
+    }
+  ]
 }
-
 ```
 
 2. update a workflow
