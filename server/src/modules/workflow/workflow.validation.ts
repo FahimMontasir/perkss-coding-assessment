@@ -2,29 +2,34 @@ import { z } from 'zod';
 
 const createWorkflowZodSchema = z.object({
   body: z.object({
-    phoneNumber: z.string().optional(),
-    password: z.string().optional(),
-    name: z.object({
-      firstName: z.string().optional(),
-      lastName: z.string().optional(),
-    }),
-    address: z.string().optional(),
-    budget: z.number().optional(),
-    income: z.number().optional(),
+    name: z.string(),
+    initBox: z.string(),
+    endBox: z.string(),
+    conditionalBoxes: z.array(
+      z.object({
+        condition: z.string(),
+        actions: z.array(z.object({ actionName: z.string(), conditionApplicable: z.boolean() })),
+      })
+    ),
   }),
 });
 
 const updateWorkflowZodSchema = z.object({
   body: z.object({
-    phoneNumber: z.string().optional(),
-    password: z.string().optional(),
-    name: z.object({
-      firstName: z.string().optional(),
-      lastName: z.string().optional(),
-    }),
-    address: z.string().optional(),
-    budget: z.number().optional(),
-    income: z.number().optional(),
+    name: z.string().optional(),
+    initBox: z.string().optional(),
+    endBox: z.string().optional(),
+    conditionalBoxes: z.array(
+      z.object({
+        condition: z.string().optional(),
+        actions: z.array(
+          z.object({
+            actionName: z.string().optional(),
+            conditionApplicable: z.boolean().optional(),
+          })
+        ),
+      })
+    ),
   }),
 });
 

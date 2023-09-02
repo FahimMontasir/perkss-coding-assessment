@@ -6,8 +6,17 @@ const workflowSchema = new Schema<IWorkFlow>(
     name: { type: String, required: true, unique: true },
     initBox: { type: String, required: true },
     endBox: { type: String, required: true },
-    conditionalBoxes: [{ type: String }],
-    actionBoxes: [{ type: String }],
+    conditionalBoxes: [
+      {
+        condition: String,
+        actions: [
+          {
+            actionName: String,
+            conditionApplicable: Boolean,
+          },
+        ],
+      },
+    ],
   },
   {
     timestamps: true,
